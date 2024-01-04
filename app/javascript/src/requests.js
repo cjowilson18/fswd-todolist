@@ -35,10 +35,10 @@ export var postTask = function (content, successCB, errorCB) {
   };
 
 
-export var destroy= function (id) {
+export  var destroy= function (id) {
     $.ajax({
      type: 'DELETE',
-     url: 'https://fewd-todolist-api.onrender.com/tasks/' + id + '?api_key=1',
+     url: 'api/tasks/' + id + '?api_key=1',
      success: function (response, textStatus) {
          console.log(response);
          indexTasks();
@@ -49,14 +49,11 @@ export var destroy= function (id) {
  });  
  }
 
- $(document).on('click', 'button.delete', function() {
-    destroy($(this).data('id'));
-});
 
 export  var mark_active= function (id) {
     $.ajax({
         type: 'PUT',
-        url: 'https://fewd-todolist-api.onrender.com/tasks/'+ id+ '/mark_active?api_key=1',
+        url: 'api/tasks/'+ id+ '/mark_active?api_key=1',
         dataType: 'json',
         success: function( response, textStatus){
             console.log(response);
@@ -70,7 +67,7 @@ export  var mark_active= function (id) {
 export  var mark_complete= function(id) {
     $.ajax({
         type: 'PUT',
-        url: 'https://fewd-todolist-api.onrender.com/tasks/'+ id+ '/mark_complete?api_key=1',
+        url: 'api/tasks/'+ id+ '/mark_complete?api_key=1',
         dataType: 'json',
         success: function( response, textStatus){
             console.log(response);
@@ -81,11 +78,3 @@ export  var mark_complete= function(id) {
         }
     })
 }
-
-
-
-$('#add-tasks').on('submit', function(e) {
-    e.preventDefault();
-    postTask($("#new-task-additions").val());
-
-});
